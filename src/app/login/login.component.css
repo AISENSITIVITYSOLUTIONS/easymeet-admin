@@ -1,0 +1,50 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(71deg, #8C52FF, #FFAE00);
+  background-size: 200% 200%;
+  animation: gradient-animation 5s ease infinite;
+  width: 100%;
+}
+
+mat-card {
+  max-width: 400px;
+  width: 90%;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.login-button {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.logo {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+mat-card-header {
+  justify-content: center;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

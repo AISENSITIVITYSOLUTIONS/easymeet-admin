@@ -1,1 +1,82 @@
-<p>dashboard works!</p>
+<mat-toolbar style="background-color:#8C52FF;color: white; box-shadow: 0 7px 8px 0 rgba(0,0,0,.3);position: relative;z-index: 5;">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>EasyMeet Admin</span>
+    <span class="example-spacer"></span>
+    <button mat-button [matMenuTriggerFor]="menu" style="color: white;">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="abrirModalRegistrar()">Registrar Admin</button>
+  <button mat-menu-item (click)="cerrarSesion()">Salir</button>
+</mat-menu>
+</mat-toolbar>
+
+<!-- Modal para registrar Admin -->
+<div *ngIf="modalVisible" class="modal" style="display: flex;flex-direction: column; justify-content: center; align-items: center; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 10;">
+  <div class="modal-content" style="background: white; padding: 20px; border-radius: 5px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <h2>Registrar Admin</h2>
+    <form (ngSubmit)="registrar()" style="display: flex; flex-direction: column; width: 100%;">
+      <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Contraseña" [(ngModel)]="pass" name="pass" type="password" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Nombre" [(ngModel)]="nombre" name="nombre" required>
+      </mat-form-field>
+      <button mat-button type="submit">Registrar</button>
+      <button mat-button (click)="cerrarModal()">Cancelar</button>
+    </form>
+  </div>
+</div>
+
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side" opened>
+        <div class="sidebar">
+          <div class="logo">
+            <span class="logo-name">
+              <img src="assets/logos/logo_admin.png" alt="logo" class="logo-img" width="150">
+            </span>
+          </div>
+          <div class="sidebar-content">
+            <ul class="lists">
+              <li class="list">
+                <a routerLink="dashboard" routerLinkActive="active" class="nav-link">
+                  <i class="bx bx-home-alt icon"></i>
+                  <span class="link">Dashboard</span>
+                </a>
+              </li>
+              <li class="list">
+                <a routerLink="reportes" routerLinkActive="active" class="nav-link">
+                  <i class="bx bx-bar-chart-alt-2 icon"></i>
+                  <span class="link">Reportes</span>
+                </a>
+              </li>
+              <li class="list">
+                <a routerLink="publicaciones" routerLinkActive="active" class="nav-link">
+                  <i class="bx bx-bar-chart-alt-2 icon"></i>
+                  <span class="link">Publicaciones</span>
+                </a>
+              </li>
+              <li class="list">
+                <a routerLink="usuarios" routerLinkActive="active" class="nav-link">
+                  <i class="bx bx-user icon"></i>
+                  <span class="link">Usuarios</span>
+                </a>
+              </li>
+              <!-- <li class="list">
+                <a routerLink="configuracion" routerLinkActive="active" class="nav-link">
+                  <i class="bx bx-cog icon"></i>
+                  <span class="link">Configuración</span>
+                </a>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+    </mat-drawer>
+    <router-outlet></router-outlet>
+</mat-drawer-container>
+
+
+

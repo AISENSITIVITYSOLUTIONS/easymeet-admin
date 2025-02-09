@@ -1,0 +1,90 @@
+<h1>Todas las publicaciones</h1>
+
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput placeholder="Ex. ium" #input (keyup)="applyFilter($event)">
+</mat-form-field>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="dataSource.data.length" (page)="dataSource.paginator = paginator"></mat-paginator>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="font-size: 9px;">
+
+    <ng-container matColumnDef="encuentro_uid">
+      <th mat-header-cell *matHeaderCellDef> Encuentro UID </th>
+      <td mat-cell *matCellDef="let element"> {{element.encuentro_uid}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="usuario">
+      <th mat-header-cell *matHeaderCellDef> Usuario </th>
+      <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tipo">
+      <th mat-header-cell *matHeaderCellDef> Tipo </th>
+      <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="enc_lugar">
+      <th mat-header-cell *matHeaderCellDef> Lugar de encuentro </th>
+      <td mat-cell *matCellDef="let element"> {{element.enc_lugar}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="enc_titulo">
+      <th mat-header-cell *matHeaderCellDef> Título </th>
+      <td mat-cell *matCellDef="let element"> {{element.enc_titulo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="enc_fec_hora">
+      <th mat-header-cell *matHeaderCellDef> Fecha y Hora </th>
+      <td mat-cell *matCellDef="let element"> {{element.enc_fec_hora}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="enc_costo">
+      <th mat-header-cell *matHeaderCellDef> Costo </th>
+      <td mat-cell *matCellDef="let element"> {{element.enc_costo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="enc_ini_edad">
+      <th mat-header-cell *matHeaderCellDef> Edad Inicial </th>
+      <td mat-cell *matCellDef="let element"> {{element.enc_ini_edad}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="enc_fin_edad">
+      <th mat-header-cell *matHeaderCellDef> Edad Final </th>
+      <td mat-cell *matCellDef="let element"> {{element.enc_fin_edad}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="enc_descripcion">
+      <th mat-header-cell *matHeaderCellDef> Descripción </th>
+      <td mat-cell *matCellDef="let element"> {{element.enc_descripcion}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="enc_latitud">
+      <th mat-header-cell *matHeaderCellDef> Latitud </th>
+      <td mat-cell *matCellDef="let element"> {{element.enc_latitud}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="enc_longitud">
+      <th mat-header-cell *matHeaderCellDef> Longitud </th>
+      <td mat-cell *matCellDef="let element"> {{element.enc_longitud}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="enc_img">
+      <th mat-header-cell *matHeaderCellDef> Imagen </th>
+      <td mat-cell *matCellDef="let element"> {{element.enc_img}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button style="background-color: orange; color: white; padding: 5px; border-radius: 5px;" (click)="openDetailsDialog(element)">Ver Detalles</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['encuentro_uid', 'usuario', 'tipo', 'enc_lugar', 'enc_titulo', 'enc_fec_hora', 'enc_costo', 'acciones']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['encuentro_uid', 'usuario', 'tipo', 'enc_lugar', 'enc_titulo', 'enc_fec_hora', 'enc_costo', 'acciones'];"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="8">No data matching the filter "{{input.value}}"</td>
+    </tr>
+</table>

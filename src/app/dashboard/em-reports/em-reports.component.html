@@ -1,0 +1,50 @@
+<h1>Reportes de eventos</h1>
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput placeholder="Ex. ium" #input (keyup)="applyFilter($event)">
+</mat-form-field>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="dataSource.data.length" (page)="dataSource.paginator = paginator"></mat-paginator>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="font-size: 9px;">
+
+    <ng-container matColumnDef="Usuario_reporte">
+      <th mat-header-cell *matHeaderCellDef> Usuario que emite el reporte </th>
+      <td mat-cell *matCellDef="let element"> {{element.Usuario_reporte}} </td>
+    </ng-container>
+    <ng-container matColumnDef="uuid_evento_reportado">
+      <th mat-header-cell *matHeaderCellDef> Evento reportado </th>
+      <td mat-cell *matCellDef="let element"> {{element.uuid_evento_reportado}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Razon">
+      <th mat-header-cell *matHeaderCellDef> Razon </th>
+      <td mat-cell *matCellDef="let element"> {{element.Razon}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Descripcion">
+      <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+      <td mat-cell *matCellDef="let element"> {{element.Descripcion}} </td>
+    </ng-container>
+    <ng-container matColumnDef="fecha_reporte">
+      <th mat-header-cell *matHeaderCellDef> Fecha de reporte </th>
+      <td mat-cell *matCellDef="let element"> {{element.fecha_reporte}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Usuario_atendio">
+      <th mat-header-cell *matHeaderCellDef> Usuario que atiende el reporte </th>
+      <td mat-cell *matCellDef="let element"> {{element.Usuario_atendio}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button style="background-color: orange; color: white; padding: 25px; border-radius: 10px;" (click)="openDetailsDialog(element)">Ver Detalles</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="[ 'Usuario_reporte',  'uuid_evento_reportado',  'Razon', 'Descripcion', 'fecha_reporte', 'Usuario_atendio', 'acciones']"></tr>
+    <tr mat-row *matRowDef="let row; columns: [ 'Usuario_reporte',  'uuid_evento_reportado',  'Razon', 'Descripcion', 'fecha_reporte', 'Usuario_atendio', 'acciones'];"></tr>
+
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="16">No data matching the filter "{{input.value}}"</td>
+    </tr>
+</table>

@@ -1,0 +1,7 @@
+.mat-table {
+  font-size: 9px !important; /* Ajusta el tamaño de la fuente según sea necesario */
+}
+
+.mat-header-cell, .mat-cell {
+  padding: 4px; /* Ajusta el padding si es necesario */
+}
